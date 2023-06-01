@@ -361,9 +361,9 @@ core.confirm = function(self, e, option, callback)
     -- Emulate `<C-y>` behavior to save `.` register.
     local ctx = context.new()
     local keys = {}
+    table.insert(keys, keymap.undobreak())
     table.insert(keys, keymap.backspace(ctx.cursor_before_line:sub(e:get_offset())))
     table.insert(keys, e:get_word())
-    table.insert(keys, keymap.undobreak())
     feedkeys.call(table.concat(keys, ''), 'in')
   end)
   feedkeys.call('', 'n', function()
